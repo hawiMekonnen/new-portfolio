@@ -11,13 +11,15 @@ function Home() {
           }}
         >
           <div className="row g-0">
+            {/* ✅ Fixed Image Path */}
             <div className="col-md-4">
               <img
-                src="./public/pic-3.png"
+                src="/pic-3.png"                     {/* ← Just /filename */}
                 className="img-fluid rounded-start"
-                alt="..."
+                alt="Hawi Mekonnen"
               />
             </div>
+
             <div className="col-md-8">
               <div className="card-body">
                 <h6 className="card-intro">Hi I'm</h6>
@@ -44,7 +46,7 @@ function Home() {
         </div>
       </div>
 
-      {/* ✅ Modal Markup */}
+      {/* ✅ Modal with Fixed PDF Path */}
       <div
         className="modal fade"
         id="cvModal"
@@ -52,7 +54,7 @@ function Home() {
         aria-labelledby="cvModalLabel"
         aria-hidden="true"
       >
-        <div className="modal-dialog">
+        <div className="modal-dialog modal-lg">
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title my-cv" id="cvModalLabel">
@@ -65,12 +67,14 @@ function Home() {
                 aria-label="Close"
               ></button>
             </div>
-            <div className="modal-body" style={{ height: "500px" }}>
+
+            <div className="modal-body" style={{ height: "600px" }}>
+              {/* ✅ Fixed PDF Path */}
               <iframe
-                src="./public/Hawi-Mekonnen-Gutema-Resume.pdf"
+                src="/Hawi-Mekonnen-Gutema-Resume.pdf"   {/* ← Just /filename.pdf */}
                 title="Hawi Mekonnen CV"
                 width="100%"
-                height="500px"
+                height="100%"
                 style={{ border: "none" }}
               ></iframe>
             </div>
@@ -84,7 +88,7 @@ function Home() {
                 Close
               </button>
               <a
-                href="/Hawi-Mekonnen-Gutema-Resume.pdf"
+                href="/Hawi-Mekonnen-Gutema-Resume.pdf"   {/* ← Also fixed here */}
                 download
                 className="btn btn-outline-warning"
               >
