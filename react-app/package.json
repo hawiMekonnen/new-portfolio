@@ -1,18 +1,19 @@
 {
   "name": "react-app",
   "private": true,
-  "homepage": "https://hawiMekonnen.github.io/new-portfolio",
+  "homepage": "https://hawimekonnen.github.io/new-portfolio",
 
   "version": "0.0.0",
   "type": "module",
- "scripts": {
+"scripts": {
   "dev": "vite",
   "build": "tsc -b && vite build",
   "lint": "eslint .",
   "preview": "vite preview",
   "predeploy": "npm run build",
-  "deploy": "gh-pages -d build"
+  "deploy": "gh-pages -d dist"
 }
+
   ,
   "dependencies": {
     "@fortawesome/fontawesome-free": "^7.1.0",

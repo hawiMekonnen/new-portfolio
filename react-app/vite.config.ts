@@ -10,4 +10,5 @@ export default defineConfig({
       },
     }),
   ],
+  base: '/new-portfolio/',   // 👈 important for GitHub Pages
 })
