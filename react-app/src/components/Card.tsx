@@ -1,4 +1,4 @@
-import { type FC, type JSX, useState } from "react";
+import { type FC, type JSX, useState, useEffect } from "react";
 import {
   FaPaintBrush,
   FaCode,
@@ -45,7 +45,29 @@ const Card: FC = () => {
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
-  const cardsPerPage = 3;
+
+  const getCardsPerPage = (): number => {
+    if (typeof window === "undefined") return 3;
+    const width = window.innerWidth;
+    if (width >= 992) return 3;
+    if (width >= 768) return 2;
+    return 1;
+  };
+
+  const [cardsPerPage, setCardsPerPage] = useState(getCardsPerPage());
+
+  useEffect(() => {
+    const handleResize = () => {
+      const newPerPage = getCardsPerPage();
+      if (newPerPage !== cardsPerPage) {
+        setCardsPerPage(newPerPage);
+        setCurrentIndex(0);
+      }
+    };
+    window.addEventListener("resize", handleResize);
+    handleResize();
+    return () => window.removeEventListener("resize", handleResize);
+  }, [cardsPerPage]);
 
   const visibleItems = items.slice(currentIndex, currentIndex + cardsPerPage);
 
@@ -61,18 +83,23 @@ const Card: FC = () => {
     }
   };
 
+  const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+
   return (
-    <div className="card-part" id="services">
-      <div
-        className="card"
-        style={{ width: "18rem", border: "none", padding: "20px" }}
-      >
-        <div>
-          <h2 className="services">Services</h2>
-          <p className="services-par">
+    <div className="card-part py-5" id="services">
+      {isMobile ? (
+        /* ==================== MOBILE LAYOUT ==================== */
+        <div className="text-center px-3">
+          {/* Title */}
+          <h2 className="services mb-3">Services</h2>
+
+          {/* Description */}
+          <p className="services-par mb-4">
             I Provide Wide Range Of Coding And Design services
           </p>
-          <div className="d-grid gap-2 d-md-block arrow-btns">
+
+          {/* Arrows - separate line, bigger top margin */}
+          <div className="d-flex justify-content-center gap-4 mb-5">
             <button
               type="button"
               className="btn btn-outline-warning circle-btn"
@@ -90,30 +117,93 @@ const Card: FC = () => {
               <FaArrowRight />
             </button>
           </div>
+
+          {/* Card */}
+          <div className="d-flex justify-content-center">
+            {visibleItems.map((item, index) => (
+              <div
+                key={index}
+                className="card text-center mb-3 service-card"
+                style={{
+                  width: "100%",
+                  maxWidth: "25rem",
+                  border: "none",
+                }}
+              >
+                <div className="card-body">
+                  <div className="icon">{item.icon}</div>
+                  <h5 className="card-title mt-3">{item.title}</h5>
+                  <p className="card-text">{item.text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
-      <div
-        style={{
-          display: "flex",
-          gap: "1rem",
-          justifyContent: "center",
-          flexWrap: "wrap",
-        }}
-      >
-        {visibleItems.map((item, index) => (
-          <div
-            key={index}
-            className="card text-center mb-3 service-card"
-            style={{ width: "18rem", border: "none" }}
-          >
-            <div className="card-body">
-              <div className="icon">{item.icon}</div>
-              <h5 className="card-title">{item.title}</h5>
-              <p className="card-text">{item.text}</p>
+      ) : (
+        /* ==================== TABLET & DESKTOP (unchanged) ==================== */
+        <>
+          <div>
+            <div
+              style={{
+                display: "inline-block",
+                width: "18rem",
+                padding: "20px",
+                textAlign: "left",
+              }}
+            >
+              <h2 className="services">Services</h2>
+              <p className="services-par">
+                I Provide Wide Range Of Coding And Design services
+              </p>
+
+              <div className="arrow-btns d-grid gap-2 d-md-block">
+                <button
+                  type="button"
+                  className="btn btn-outline-warning circle-btn"
+                  onClick={handlePrev}
+                  disabled={currentIndex === 0}
+                >
+                  <FaArrowLeft />
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-outline-warning circle-btn"
+                  onClick={handleNext}
+                  disabled={currentIndex + cardsPerPage >= items.length}
+                >
+                  <FaArrowRight />
+                </button>
+              </div>
             </div>
           </div>
-        ))}
-      </div>
+
+          <div
+            style={{
+              display: "flex",
+              gap: "1rem",
+              justifyContent: "center",
+              flexWrap: "wrap",
+            }}
+          >
+            {visibleItems.map((item, index) => (
+              <div
+                key={index}
+                className="card text-center mb-3 service-card"
+                style={{
+                  width: "18rem",
+                  border: "none",
+                }}
+              >
+                <div className="card-body">
+                  <div className="icon">{item.icon}</div>
+                  <h5 className="card-title">{item.title}</h5>
+                  <p className="card-text">{item.text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </>
+      )}
     </div>
   );
 };
