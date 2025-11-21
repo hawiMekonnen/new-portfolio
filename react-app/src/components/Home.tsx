@@ -13,7 +13,7 @@ function Home() {
           <div className="row g-0">
             <div className="col-md-4">
               <img
-                src="./public/pic-3.png"
+                src="./images/pic-3.png"
                 className="img-fluid rounded-start"
                 alt="..."
               />
