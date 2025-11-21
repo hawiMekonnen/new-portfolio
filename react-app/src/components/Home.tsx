@@ -67,7 +67,7 @@ function Home() {
             </div>
             <div className="modal-body" style={{ height: "500px" }}>
               <iframe
-                src="/Hawi-Mekonnen-Gutema-Resume.pdf"
+                src="./public/Hawi-Mekonnen-Gutema-Resume.pdf"
                 title="Hawi Mekonnen CV"
                 width="100%"
                 height="500px"
