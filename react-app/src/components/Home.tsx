@@ -11,15 +11,13 @@ function Home() {
           }}
         >
           <div className="row g-0">
-            {/* ✅ Fixed Image Path */}
             <div className="col-md-4">
               <img
-                src="/pic-3.png"                     {/* ← Just /filename */}
+                src="/pic-3.png" // ← exact name, no folder
                 className="img-fluid rounded-start"
                 alt="Hawi Mekonnen"
               />
             </div>
-
             <div className="col-md-8">
               <div className="card-body">
                 <h6 className="card-intro">Hi I'm</h6>
@@ -46,7 +44,7 @@ function Home() {
         </div>
       </div>
 
-      {/* ✅ Modal with Fixed PDF Path */}
+      {/* ✅ Modal Markup */}
       <div
         className="modal fade"
         id="cvModal"
@@ -54,7 +52,7 @@ function Home() {
         aria-labelledby="cvModalLabel"
         aria-hidden="true"
       >
-        <div className="modal-dialog modal-lg">
+        <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title my-cv" id="cvModalLabel">
@@ -67,11 +65,9 @@ function Home() {
                 aria-label="Close"
               ></button>
             </div>
-
-            <div className="modal-body" style={{ height: "600px" }}>
-              {/* ✅ Fixed PDF Path */}
+            <div className="modal-body" style={{ height: "500px" }}>
               <iframe
-                src="/Hawi-Mekonnen-Gutema-Resume.pdf"   {/* ← Just /filename.pdf */}
+                src="/Hawi-Mekonnen-Gutema-Resume.pdf" // ← MUST match exactly!
                 title="Hawi Mekonnen CV"
                 width="100%"
                 height="100%"
@@ -88,8 +84,8 @@ function Home() {
                 Close
               </button>
               <a
-                href="/Hawi-Mekonnen-Gutema-Resume.pdf"   {/* ← Also fixed here */}
-                download
+                href="/Hawi-Mekonnen-Gutema-Resume.pdf"
+                download="Hawi-Mekonnen-Gutema-Resume.pdf"
                 className="btn btn-outline-warning"
               >
                 Download CV
