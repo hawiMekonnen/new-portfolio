@@ -13,7 +13,7 @@ function Home() {
           <div className="row g-0">
             <div className="col-md-4">
               <img
-                src="/pic-1.png" // ← exact name, no folder
+                src="/pic-3.png" // ← exact name, no folder
                 className="img-fluid rounded-start"
                 alt="Hawi Mekonnen"
               />
